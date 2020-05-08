@@ -11,7 +11,9 @@ include_once($_SERVER['DOCUMENT_ROOT']."/common/mws_common.php");
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" name="viewport" />
     <title>메이크웨이 - 웹솔루션, 웹프로그램개발, 홈페이지제작, 쇼핑몰제작</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
@@ -92,8 +94,23 @@ include_once($_SERVER['DOCUMENT_ROOT']."/common/mws_common.php");
                     <li class="contact">상담문의</li>
                 </ul>
             </nav>
+            <div class="ham_btn">
+                <span class="bar bar1"></span>
+                <span class="bar bar2"></span>
+                <span class="bar bar3"></span>
+            </div>
         </div>    
     </header>
+    <div class="ham_menu" style="display:none;">
+        <ul>
+            <li>HOME</li>
+            <li>SOLUTION</li>
+            <li>PROGRAM</li>
+            <li>NOTICE</li>
+            <li>ABOUT</li>
+            <li>CONTACT</li>
+        </ul>
+    </div>
     <div class="indicator">
         <div class="indi_line"></div>
         <div class="indi_circle"> 

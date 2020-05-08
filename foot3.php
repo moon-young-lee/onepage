@@ -43,19 +43,20 @@
 						<input type="text" name="bd_email" id="bd_email" placeholder="이메일" title="이메일" data-valide="email2,이메일">
 					</div>
 				</div>
-				<div class="con_blank">
+				<div class="con_blank con_blank1">
 				    <span>상담유형</span>
-				    <label>
-                        <input type="radio" name="bd_addfield1" value="웹솔루션 문의" id="contype" data-valide="radio,상담유형">웹솔루션
-				    </label>
-				    <label>
-                        <input type="radio" name="bd_addfield1" value="홈페이지 제작문의" id="contype" data-valide="radio,상담유형">홈페이지제작
-				    </label>
-				    <label>
-                        <input type="radio" name="bd_addfield1" value="쇼핑몰 제작문의" id="contype" data-valide="radio,상담유형">쇼핑몰제작
-				    </label>
+				    <div class="flex">
+				        <label>
+                            <input type="radio" name="bd_addfield1" value="웹솔루션 문의" id="contype" data-valide="radio,상담유형">웹솔루션
+                        </label>
+                        <label>
+                            <input type="radio" name="bd_addfield1" value="홈페이지 제작문의" id="contype" data-valide="radio,상담유형">홈페이지제작
+                        </label>
+                        <label>
+                            <input type="radio" name="bd_addfield1" value="쇼핑몰 제작문의" id="contype" data-valide="radio,상담유형">쇼핑몰제작
+                        </label>
+				    </div>
 				</div>
-				
 				<div>
 					<textarea placeholder="문의내용" class="input_txt" name="bd_content" id="bd_content" cols="30" rows="10" data-valide="textarea,문의내용"></textarea>
 				</div>
@@ -97,7 +98,10 @@
   </footer>
 </body>
 </html>
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d11c451534a4d3c24cdabd87bb0077b0&libraries=services"></script>
+<!--<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+<!--<script src="jquery.mobile-events.js"> </script>-->
 <script type="text/javascript">
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -167,11 +171,20 @@ $(document).ready(function(){
     setInterval(main_slide,20000);
     $('.main1_indi_').eq(page_i).css({'background':'#006cff'});
     
-    
-    
-    
-    
-    
+     if( win_w < 400 ){
+        $('footer .col1').appendTo('footer .col2');
+        $('.mouse').hide();
+        $('.main1_indi').css('position','absolute');
+   }else if( win_w < 680 ){
+        $('footer .col1').prependTo('footer .col2');
+   }else if( win_w < 980 ){
+        $('.mouse').fadeIn();
+        $('.mouse').css('opacity','1');
+    }else if( win_w > 980 ){
+        $('.mouse').hide();
+        $('.mouse').css('opacity','0'); 
+        $('.main1_indi').css('position','absolute');
+    }
     
 })    
 //첫번째,메인 롤링    
@@ -378,7 +391,7 @@ $('.q_col2 .box4').click(function(){
 })
     
     
- //웹솔루션컷 마우스 이벤트   
+ //웹솔루션컷 마우스 이벤트   on // off 
     
  $('.sol_plus span').mouseenter(function(){
      sol_i = $(this).parents('.box').index();
@@ -393,30 +406,8 @@ $('.sol_contain .imgbox').mouseleave(function(){
     $('.sol_contain .box').eq(sol_i).find('.sol_plus span').fadeIn();
     $('.sol_contain .box').eq(sol_i).find('.__icon2').css({opacity:'0',left:'calc(50% - 25px)'});
     $('.sol_contain .box').eq(sol_i).find('.__icon3').css({opacity:'0',right:'calc(50% - 25px)'});
-//    $('.sol_plus span').fadeIn();
-    
 });
     
-    
-    
-    
-//$('.sol_plus').mouseenter(function(){
-//    sol_i = $(this).parents('.box').index();
-//    console.log(sol_i)
-//    $('.sol_contain .box').eq(sol_i).find('.sol_plus>span').fadeOut();
-////    $('.sol_contain .box').eq(sol_i).find('.__icon1').css({opacity:'1',left:'80px'});
-//    $('.sol_contain .box').eq(sol_i).find('.__icon2').css({opacity:'1',left:'50px'});
-//    $('.sol_contain .box').eq(sol_i).find('.__icon3').css({opacity:'1',left:'100px'});
-//    $('.sol_contain .box').eq(sol_i).find('span').css({opacity:'1'});
-////    $('.sol_contain .__icon').
-//})
-//$('.sol_contain .imgbox').mouseleave(function(){
-//    $('.sol_plus>span').fadeIn();
-//    $('.sol_contain .box .__icon span').css({opacity:'0'});
-////    $('.sol_contain .box .__icon1').css({opacity:'0',left:'calc(50% - 25px)'});
-//    $('.sol_contain .box .__icon2').css({opacity:'0',left:'calc(50% - 25px)'});
-//    $('.sol_contain .box .__icon3').css({opacity:'0',left:'calc(50% - 25px)'});
-//})    
 //솔루션 클릭시 레이어팝업 (준비중입니다)
 $('.main2_box span').click(function(){
     $('.main2_black').fadeOut();
@@ -435,7 +426,7 @@ $('.noti_black span').click(function(){
 })
   
     
-//상담문의 클릭시    
+//상담문의 클릭시 레이어팝업
 $('.contact').click(function(){
     $('.footer_black').fadeIn();
 })    
@@ -473,24 +464,44 @@ if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') !
 
 $(window).resize(function(){
     win_w = $('html').width();
-    if(win_w<980){
+    if( win_w < 400 ){
+        $('footer .col1').appendTo('footer .col2');
         $('.mouse').hide();
-        $('.mouse').css('opacity','0');
         $('.main1_indi').css('position','absolute');
-        $('.main1_indi').css('position','absolute');
-    }else if(win_w<400){
-        $('footer .col2').prependTo('footer .col1');
+   }else if( win_w < 680 ){
+        $('footer .col1').prependTo('footer .col2');
+   }else if( win_w < 980 ){
+        $('.mouse').fadeIn();
+        $('.mouse').css('opacity','1');
+    }else if( win_w > 980 ){
         $('.mouse').hide();
+        $('.mouse').css('opacity','0'); 
         $('.main1_indi').css('position','absolute');
     }
     
-})
+});
 
+$('.frame').on('swipeleft',  function(){
+    main_i++;
+    main_i=main_i%3;
+    $('.main1_indi_').eq(main_i).css({'background':'#006cff'});
+    $('.main1_indi_').not($('.main1_indi_').eq(main_i)).css({'background':'#fff'});
+    $('.main1 .frame').stop().animate({'left':-main_i*100+'vw'},700);
+    
+});
+$('.frame').on('swiperight',  function(){
+    main_i--;
+    main_i=main_i%3;
+    $('.main1_indi_').eq(main_i).css({'background':'#006cff'});
+    $('.main1_indi_').not($('.main1_indi_').eq(main_i)).css({'background':'#fff'});
+    $('.main1 .frame').stop().animate({'left':-main_i*100+'vw'},700);
+    
+});
 
-
-
-
-
+$('.ham_btn').click(function(){
+    $(this).toggleClass('clicked');
+    $('.ham_menu').fadeToggle();
+});
 
 
 
